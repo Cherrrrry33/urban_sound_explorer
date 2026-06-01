@@ -54,6 +54,8 @@ function updateMapSize() {
 }
 
 function loadSoundSources() {
+  // Load location data from CSV file
+  // and store it as sound source objects
   for (let i = 0; i < soundTable.getRowCount(); i++) {
     let source = {
       px: soundTable.getNum(i, "px"),
@@ -90,6 +92,8 @@ function drawMapBackground() {
 }
 
 function createGrid() {
+  // Generate a grid of points across
+  // the map for sound field visualisation
   gridPoints = [];
 
   let spacing = 26;
@@ -115,26 +119,32 @@ function getSourceY(s) {
   return mapDrawY + s.py * mapDrawH;
 }
 
+// Estimate noise levels across the city
+// using distance-based interpolation
 function calculateNoiseAtPoint(x, y) {
-    let backgroundNoise = 48;
+  let backgroundNoise = 48;
 
-    let totalWeight = 1.8;
-    let weightedNoise = backgroundNoise * totalWeight;
+  let totalWeight = 1.8;
+  let weightedNoise = backgroundNoise * totalWeight;
 
     for (let s of soundSources) {
-        let sx = getSourceX(s);
-        let sy = getSourceY(s);
+      let sx = getSourceX(s);
+      let sy = getSourceY(s);
 
-        let d = dist(x, y, sx, sy);
-        let weight = 1 / pow(d + 10, 1.65);
+      let d = dist(x, y, sx, sy);
+      // Calculate influence based on distance.
+      // Nearby sound sources have a stronger effect.
+      let weight = 1 / pow(d + 10, 1.65);
 
-        weightedNoise += s.noise * weight * 1800;
-        totalWeight += weight * 1800;
+      weightedNoise += s.noise * weight * 1800;
+      totalWeight += weight * 1800;
     }
 
-    return weightedNoise / totalWeight;
+  return weightedNoise / totalWeight;
 }
 
+// City View reveals sound patterns locally,
+// while Abstract View shows the entire sound field.
 function drawSoundField() {
   let revealRadius = 210;
 
@@ -144,14 +154,12 @@ function drawSoundField() {
     let baseSize = map(p.noise, 45, 75, 3, 24);
     baseSize = constrain(baseSize, 4, 20);
 
-    // abstract mode：显示所有点
     if (currentView === "abstract") {
       noStroke();
       fill(255, 150);
       ellipse(p.x, p.y, baseSize);
     }
 
-    // city mode：只显示鼠标附近
     else {
       if (d > revealRadius) continue;
 
@@ -195,7 +203,7 @@ function drawSourceMarkers() {
     }
 
     if (d < 40 || (playingSource === s && isPlaying)) {
-        showMarker = true;
+      showMarker = true;
     }
 
     if (showMarker) {
@@ -215,7 +223,11 @@ function drawSourceMarkers() {
     }
 
     if (playingSource === s && isPlaying && amplitude) {
+      // Read real-time audio amplitude
+      // using p5.Amplitude()
       let level = amplitude.getLevel();
+      // Convert audio volume into
+      // marker size animation
       let audioPulse = map(level, 0, 0.25, 0, 45);
 
       noFill();
@@ -247,23 +259,23 @@ function updateHoverInfo() {
     let audioText;
 
     if (nearest.audio && nearest.audio !== "") {
-        if (playingSource === nearest && isPlaying) {
-            audioText = "Playing — click again to pause";
-        } else if (playingSource === nearest && !isPlaying) {
-            audioText = "Paused — click again to resume";
-        } else {
-            audioText = "Click to listen";
-        }
+      if (playingSource === nearest && isPlaying) {
+        audioText = "Playing — click again to pause";
+      } else if (playingSource === nearest && !isPlaying) {
+        audioText = "Paused — click again to resume";
+      } else {
+        audioText = "Click to listen";
+      }
     } else {
-    audioText = "No recording available";
+      audioText = "No recording available";
     }
 
     document.getElementById("info").innerHTML = `
-        <strong>${nearest.label}</strong><br>
-        Type: ${nearest.type}<br>
-        Noise level: ${nearest.noise} dB<br><br>
-        ${nearest.insight}<br><br>
-        ${audioText}
+      <strong>${nearest.label}</strong><br>
+      Type: ${nearest.type}<br>
+      Noise level: ${nearest.noise} dB<br><br>
+      ${nearest.insight}<br><br>
+      ${audioText}
     `;
 
   } else {
@@ -283,6 +295,8 @@ function windowResized() {
   createGrid();
 }
 
+// Click a sound source to play,
+// pause, or resume its recording.
 function mousePressed() {
   for (let s of soundSources) {
     let sx = getSourceX(s);
@@ -292,21 +306,21 @@ function mousePressed() {
     if (d < 40) {
       if (!s.audio || s.audio.trim() === "") return;
 
-      // 点击正在播放的点 → 暂停
+      // Pause
       if (playingSource === s && currentSound && isPlaying) {
         currentSound.pause();
         isPlaying = false;
         return;
       }
 
-      // 点击暂停的同一个点 → 继续
+      // Continue
       if (playingSource === s && currentSound && !isPlaying) {
         currentSound.play();
         isPlaying = true;
         return;
       }
 
-      // 换新声音
+      // Change
       if (currentSound) {
         currentSound.stop();
       }

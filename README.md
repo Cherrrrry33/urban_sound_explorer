@@ -2,130 +2,84 @@
 
 ## Project Overview
 
-This project explores how urban sound environments can be visualised and experienced through interactive design. It focuses on how different locations within a city can feel distinct in terms of noise, atmosphere, and activity.
+Urban Sound Explorer is an interactive web-based soundscape map of London. The project visualises urban sound environments through an exploratory interface that combines environmental noise data, location-based information, and environmental audio recordings.
 
-Rather than presenting sound data as static information, this project aims to create an interactive experience where users can explore and compare different urban environments.
-
----
-
-## Concept
-
-Cities are experienced not only visually, but also through sound. However, sound is often overlooked or taken for granted.
-
-This project attempts to:
-- Make urban sound visible
-- Allow users to explore different sound environments
-- Highlight differences between noisy and quiet areas
-
-The project combines:
-- Personal sound recordings (primary data)
-- Simplified noise level values (interpreted data)
+Users can explore different areas of London, compare sound intensity patterns, and listen to recordings collected from selected locations.
 
 ---
-
-## Interaction Design
-
-The project is designed as an exploratory interface rather than a purely informational tool.
-
-Key interactions include:
-
-- **Hover / proximity interaction**  
-  Data points become clearer as the user moves the cursor closer, encouraging exploration.
-
-- **Click interaction**  
-  Users can click on points to reveal detailed information and associated sound.
-
-- **View switching (City ↔ Abstract)**  
-  Users can switch between:
-  - A map-based view (spatial context)
-  - An abstract visualisation (data-focused view)
-
-This approach allows users to experience both:
-- The physical location
-- The data representation
-
----
-
-## Data Strategy
-
-Due to the complexity of official environmental datasets, this project adopts a simplified data model.
-
-- Primary data:  
-  Sound recordings collected from different urban locations
-
-- Secondary data:  
-  Noise level values (in dB) based on observed patterns and research
-
-Official datasets (e.g. UK Environmental Noise Directive) were explored but not directly used due to their complexity and lack of suitability for interactive web visualisation.
-
----
-
-## Technical Implementation
-
-The project is implemented as a web-based interactive visualisation using:
-
-- HTML / CSS
-- JavaScript
-- p5.js (for dynamic rendering and interaction)
-
-The system uses layered design:
-- Background: simplified city map
-- Canvas: dynamic data points
-- UI: interaction and information display
-
----
-
-## Current Progress
-
-- Basic interaction system implemented
-- Map + point visualisation working
-- View switching between city and abstract modes
-- Data structure defined
-
----
-
-## Next Steps
-
-- Integrate real sound recordings
-- Refine visual design and aesthetics
-- Improve mapping between data points and locations
-- Add insights to support interpretation
-- (Optional) explore live microphone input
-
----
-
-## Reflection (Initial)
-
-This project focuses on transforming data into an experience rather than simply presenting information. It explores how interaction can encourage users to engage more deeply with urban environments and reflect on how sound shapes their perception of the city.
-
-
-# Urban Sound Explorer
-
-## Project Overview
-Urban Sound Explorer is an interactive soundscape map of London that visualises urban noise patterns and allows users to explore selected locations through audio recordings.
 
 ## Features
-- Interactive map
+
+- Interactive soundscape map
 - City View and Abstract View
-- Audio playback
-- Audio-reactive visualisation
-- Insight panel
+- Mouse-based exploration
+- Environmental audio playback
+- Audio-reactive visualisation using p5.sound
+- Location insight panel
+- Custom sound field interpolation system
+
+---
 
 ## Data Sources
-- UK Government Environmental Noise Dataset
-- Self-collected field recordings
+
+The project was informed by environmental noise datasets published by the UK Government and the Department for Environment, Food and Rural Affairs (DEFRA).
+
+The file:
+
+data/noise_mapping_round_3.csv
+
+contains reference data used during the research and development stage. It was explored to understand environmental noise distribution and support the creation of a simplified custom dataset used in the final visualisation.
+
+The final project does not directly visualise this dataset.
+
+Environmental audio recordings were also collected from selected locations in London and integrated into the project.
+
+---
 
 ## Technologies
+
 - HTML
 - CSS
 - JavaScript
 - p5.js
 - p5.sound
 
+---
+
+## Repository Structure
+
+```text
+Urban-Sound-Explorer/
+
+├── assets/        # images and audio files
+├── data/          # research datasets and project data
+├── index.html
+├── style.css
+├── main.js
+└── README.md
+```
+
+---
+
 ## How to Run
-1. Clone repository
-2. Open with Live Server
-3. Explore the map
+
+1. Clone the repository.
+2. Open the project folder in Visual Studio Code.
+3. Start the project using Live Server.
+4. Open the generated local URL in a browser.
+
+---
+
+## References
+
+- UK Government Environmental Noise Data
+- DEFRA Noise Exposure Data Round 3
+- Aporee Sound Maps
+- p5.js
+- p5.sound
+
+---
 
 ## Author
-Cherry Liu
+
+Cherry Lau
