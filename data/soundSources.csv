@@ -1,0 +1,17 @@
+px,py,noise,label,type,audio,insight
+0.40,0.27,85,Oxford Circus,traffic,assets/sounds/oxford-circus.mp3,High noise level due to dense traffic and constant pedestrian activity.
+0.48,0.34,72,Chinatown,commercial/cultural,assets/sounds/chinatown.mp3,A dense cultural district with layered multilingual soundscapes.
+0.23,0.42,45,Hyde Park,nature,assets/sounds/hyde-park.mp3,Natural sounds soften the intensity of the surrounding city.
+0.55,0.32,68,Covent Garden,entertainment,assets/sounds/covent-garden.mp3,Public performance creates an active and expressive sound environment.
+0.65,0.50,65,South Bank,riverside,assets/sounds/south-bank.mp3,The riverside blends urban activity with environmental sounds.
+0.50,0.36,80,Leicester Square,entertainment,,Tourism and entertainment combine to create a highly energetic soundscape.
+0.73,0.64,56,Elephant and Castle,residential,assets/sounds/elephant&castle.mp3,Residential spaces are generally quieter with occasional background noise.
+0.56,0.80,56,Vauxhall,residential,,A transitional area where transport infrastructure residential life and riverside spaces meet.
+0.14,0.24,78,Paddington Station,transport,assets/sounds/paddington-station.mp3,A major rail and underground interchange connecting local and national travel.
+0.29,0.16,70,Baker Street,transport,assets/sounds/baker-street.mp3,A mixed transport and residential district shaped by underground lines traffic and everyday city movement.
+0.22,0.76,55,Chelsea,residential,,A residential neighbourhood with a calmer rhythm and softer urban sounds.
+0.87,0.23,79,Liverpool Street Station,transport,assets/sounds/liverpool-street-station.mp3,A major financial district transport hub with constant commuter activity.
+0.70,0.32,70,Blackfriars,riverside,,A riverside transport area where trains traffic and river ambience intersect.
+0.37,0.54,50,Green Park,nature,,A quieter green space surrounded by central London's busy districts.
+0.48,0.64,74,Westminster,government,,A symbolic civic area where tourism traffic and public activity create a distinctive urban atmosphere.
+0.53,0.15,52,Russell Square,nature,,A quieter university district where green space softens the surrounding urban environment.
